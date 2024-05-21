@@ -1,0 +1,68 @@
+---
+title: "colby short vignette"
+output: 
+rmarkdown::html_vignette: 
+toc: false
+fig_width: 5 
+fig_height: 5 
+vignette: >
+ %\VignetteIndexEntry{colby example vignette}
+ %\VignetteEngine{knitr::rmarkdown}
+ %\VignetteEncoding{UTF-8}
+---
+<style>
+p.caption {
+  font-size: 1.5em;
+}
+</style>
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### Installation
+```{r installation, eval=FALSE}
+
+```   
+
+### Overview
+
+This package is built around the "colby" function, which derives colors for a numeric vector.
+This is useful for coloring base R graphics by a continuous variable. 
+
+### Example
+
+```{r example}
+
+
+# simulate data:
+x <- rnorm(100)
+xy <- cbind(x + rnorm(100), x + rnorm(100))
+
+# create different types of variables:
+x_nonnegative <- order(x)
+x_centered <- x
+x_arbitrary <- x + 1
+
+# choose colors (non-negative variable)
+res <- colby(x_nonnegative, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col = NA) 
+plot(xy, pch = 16, cex = 2, asp = 1, col = res$col)
+# draw a legend atop the plot:
+legend("topleft", pch = 16, col = res$legendcols, legend = res$legendtext)
+# draw a legend in a separate plot:
+drawColorLegend(res)
+
+# log-transform and force to "arbitrary" type of scale:
+res <- colby(x_nonnegative, type = "arbitrary", cols = NULL, quant = 0.99, log = TRUE, na_col = NA) 
+plot(xy, pch = 16, cex = 2, asp = 1, col = res$col)
+legend("topleft", pch = 16, col = res$legendcols, legend = res$legendtext)
+
+# input custom colors:
+res <- colby(x_nonnegative, type = "arbitrary", cols = c("dodgerblue3", "grey60", "orange"), quant = 0.99, log = TRUE, na_col = NA) 
+plot(xy, pch = 16, cex = 2, asp = 1, col = res$col)
+legend("topleft", pch = 16, col = res$legendcols, legend = res$legendtext)
+
+```
+
