@@ -1,3 +1,7 @@
+#' Get colors from a numeric vector
+#' 
+#' Defines colors for 3 cases: non-negative vectors where position vis-a-vis 0 has meaning, vectors rounghly centered around 0, and vectors where location is irrelevant. 
+#' Tries to infer which case pertains to your vector, but this logic can be overridden with the `type` argument. 
 #' @param x vector to color by
 #' @param type One of "nonnegative", "centered", "arbitrary", or NULL. 
 #' \itemize{
@@ -18,7 +22,6 @@
 #' }
 #' @importFrom stats quantile
 #' @importFrom grDevices colorRampPalette
-#' @importFrom graphics image
 #' @export
 colby <- function(x, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col = NA) {
   
@@ -100,7 +103,7 @@ colby <- function(x, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col
 #' Infer what kind of color scale to draw
 #' 
 #' Use the range of x to determine what type of color scale would work best.
-#' @param x
+#' @param x Numeric vector
 #' @return one of "nonnegative", "centered", or "arbitrary"
 chooseType <- function(x) {
   type <- "arbitrary"
@@ -121,9 +124,11 @@ chooseType <- function(x) {
 #' Draws a legend based on colby() outputs in a new graphics window.
 #' @param res The list output by `colby`
 #' @return Draws a legend
+#' @importFrom graphics image
+#' @importFrom graphics axis
 #' @export
 drawColorLegend <- function(res) {
   graphics::image(z = matrix(seq_len(101), nrow = 1), col = res$palette, axes = FALSE, las = 2)
-  axis(2, at = seq(0, 1, length.out= length(res$legendtext)), labels = res$legendtext, las = 2)
+  graphics::axis(2, at = seq(0, 1, length.out= length(res$legendtext)), labels = res$legendtext, las = 2)
 }
 

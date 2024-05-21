@@ -17,7 +17,7 @@ test_that("colby runs without errors under diverse conditions", {
   
   # centered:
   res <- colby(rnorm(100), type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col = NA) 
-  expect_true(sum(!is.na(res$col)) == 100)
+    expect_true(sum(!is.na(res$col)) == 100)
   
   # non-negative:
   res <- colby(0:99, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col = NA) 

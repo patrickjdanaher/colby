@@ -1,5 +1,5 @@
 ---
-title: "colby short vignette"
+title: "Using the colby package to color base graphics plots by a numeric vector"
 output: 
 rmarkdown::html_vignette: 
 toc: false
@@ -22,11 +22,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-### Installation
-```{r installation, eval=FALSE}
-
-```   
-
 ### Overview
 
 This package is built around the "colby" function, which derives colors for a numeric vector.
@@ -35,7 +30,7 @@ This is useful for coloring base R graphics by a continuous variable.
 ### Example
 
 ```{r example}
-
+library(colby)
 
 # simulate data:
 x <- rnorm(100)

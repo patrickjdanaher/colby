@@ -1,12 +1,12 @@
 Package: colby
 Title: Convenience function for colors in R base graphics
 Version: 0.0.0.9000
-Authors@R: person("Danaher", "Patrick", email = "Patrick Danaher <patrick j danaher at gmail>", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2844-5883"))
+Authors@R: person("Danaher", "Patrick", email = "pdanaher@nanostring.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2844-5883"))
 Description: Built around the "colby" function, which converts a numeric vector into a color scale. Also makes showing a legend convenient.
-License: See license file
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Imports: 
     data.table,
