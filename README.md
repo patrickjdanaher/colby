@@ -7,3 +7,7 @@ It also returns data that can be used to easy drawing of color scales.
 See the vignette for usage examples.
 
 
+## Installation
+```
+devtools::install_github("https://github.com/patrickjdanaher/colby")
+```
