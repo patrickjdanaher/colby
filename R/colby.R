@@ -45,9 +45,12 @@ colby <- function(x, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col
   
   # define cols if not provided:
   if (is.null(cols)) {
-    cols = c("darkblue", "blue", "grey80", "red", "darkred")
+    cols <- c("darkblue", "blue", "grey80", "red", "darkred")
     if (type == "nonnegative") {
-      cols = c("grey80", "darkblue")
+      cols <- c("grey80", "#4B0082")
+    }
+    if (type == "arbitrary") {
+      cols <- c("#000004FF, #1B0C42FF, #4B0C6BFF, #781C6DFF, #A52C60FF, #CF4446FF, #ED6925FF, #FB9A06FF, #F7D03CFF, #FCFFA4FF")
     }
   }
   
@@ -106,6 +109,10 @@ colby <- function(x, type = NULL, cols = NULL, quant = 0.99, log = FALSE, na_col
 #' @param x Numeric vector
 #' @return one of "nonnegative", "centered", or "arbitrary"
 chooseType <- function(x) {
+  # truncate Inf values:
+  newmax <- max(abs(x[abs(x) < Inf]), na.rm = TRUE)
+  x <- pmax(pmin(x, newmax), -newmax)
+  # choose color scheme
   type <- "arbitrary"
   if (log2(max(pmax(x, 0), na.rm = TRUE) / max(pmax(-x, 0), na.rm = TRUE)) <= 1) {
     type <- "centered"
